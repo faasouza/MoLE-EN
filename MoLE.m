@@ -227,3 +227,8 @@ end
 
 %  converged = 0;
 end
+
+function s=logsumexp(x)
+y=max(x,[],2);
+s=y+log(sum(exp(x-repmat(y,1,size(x,2))),2));
+end
