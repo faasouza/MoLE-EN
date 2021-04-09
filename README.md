@@ -20,7 +20,7 @@ reg = 'lasso'; % type of regularizaion, the types are 'lasso' (for lasso penalty
 
 % generate artificial data
 pd = makedist('Normal');
-samples = 1000;
+samples = 50;
 x = random(pd,samples,1);
 train = ceil(samples/2);
 test = samples-train;
