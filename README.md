@@ -50,6 +50,7 @@ ylabel('y-values')
 ```
 
 It should output something like this:
+
 ![MoLE-EN results](/mole_en_output.png)
 
 # Utilization
