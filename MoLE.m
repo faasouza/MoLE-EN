@@ -1,3 +1,14 @@
+% Main classe of MoLE-EN
+% For use with MATLAB
+% Copyright (C) 2021 -- Francisco Souza <alexandre.andry@gmail.com> or <f.souza@science.ru.nl>
+% MoLE-EN comes with ABSOLUTELY NO WARRANTY;
+% In case of application of this method in any publication,
+% please, cite the original work:
+% Souza, Francisco; Mendes, Jérôme; Araújo, Rui. 2021. 
+% "A Regularized Mixture of Linear Experts for Quality Prediction in Multimode and Multiphase Industrial Processes" 
+% Appl. Sci. 11, no. 5: 2040. 
+% DOI: https://doi.org/10.3390/app1105204
+
 classdef MoLE
     properties
         ne = 2;
@@ -34,14 +45,14 @@ classdef MoLE
             tol = 1e-3;
             bic_min = 1e10;
             improvement = 0;
-            theta_ = randn(n+1,obj.ne)*0.1; % expert parameter
-            v_ = randn(n+1,obj.ne)*0; % gate parameter
+            theta_ = randn(n+1,obj.ne)*.1; % expert parameter
+            v_ = randn(n+1,obj.ne)*.1; % gate parameter
             v_(:,1)=0; % gate parameter
             
             prob = zeros(m,obj.ne); %
             resp = zeros(m,obj.ne); %
             gate = zeros(m,obj.ne); %
-            gv = 500*ones(1,obj.ne);
+            gv = 100*ones(1,obj.ne);
             ypred = zeros(m,obj.ne);
             e = zeros(m,obj.ne);
             Q_plot = zeros(1,m);
@@ -89,13 +100,13 @@ classdef MoLE
                 df_hmole = 0;
                 for j=2:ne_
                     
-                        for l=1:ne_
-                            gate(:,l) = [ones(m,1) x]*v_(:,l);
-                        end
-                        pi = exp(gate - repmat(logsumexp(gate),1,ne_));
-                        
-                        w=(pi(:,j).*(1-pi(:,j)));
-		    for rep=1:20
+                    for l=1:ne_
+                        gate(:,l) = [ones(m,1) x]*v_(:,l);
+                    end
+                    pi = exp(gate - repmat(logsumexp(gate),1,ne_));
+                    
+                    w=(pi(:,j).*(1-pi(:,j)));
+                    for rep=1:30
                         y_gate=[ones(m,1) x]*v_(:,j) + (w.*((w.^2+1e-3).^-1)).*(resp(:,j)-pi(:,j));
                         
                         % fit lower gates
@@ -120,7 +131,7 @@ classdef MoLE
                 y_est_train = sum(ypred.*pi,2);
                 bic = m*log(sum((y - y_est_train).^2)/m) + log(m)*df_hmole;
                 rss = sum((y - y_est_train).^2);
-                [rss bic]
+                %[rss bic]
                 
                 if bic<bic_min
                     bic_min = bic;
@@ -143,10 +154,10 @@ classdef MoLE
                 ypred(:,j) = [ones(size(x,1),1) x]*obj.theta(:,j);
             end
             pi = exp(gate_out - repmat(logsumexp(gate_out),1,obj.ne));
-             
+            
             y_est_mole = sum(ypred.*pi,2);
             gates = pi;
-
+            
         end
         
         function [v,df] = fit_gate_model(obj,x,y,w,theta)
@@ -182,7 +193,7 @@ elseif strcmp(reg,'lasso') || strcmp(reg,'en') || ...
     den=sum(repmat(w,1,size(x,2)).*x.^2,1);
     for jj=1:size(x,2)
         tmp = sum(w.*x(:,jj).*(y-x(:,[1:jj-1 jj+1:end])*theta([1:jj-1 jj+1:end])));
-        theta(jj) = softthrh(tmp,lambda*alpha)/(den(jj)+lambda*(1-alpha)); % en penalty
+        theta(jj) = softthrh(tmp,lambda*alpha)/(eps+den(jj)+lambda*(1-alpha)); % en penalty
     end
     df = sum(theta~=0);
 end
