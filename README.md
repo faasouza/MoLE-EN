@@ -1,8 +1,7 @@
 # MoLE-EN
-Source code of the Regularized Mixture of Linear Experts
+Source code of the Regularized Mixture of Linear Experts;
 
-Paper: A Regularized Mixture of Linear Experts for Quality Prediction in Multimode and Multiphase Industrial Processes
-       https://doi.org/10.3390/app11052040
+Reference paper: Souza, Francisco; Mendes, Jérôme; Araújo, Rui. 2021. "A Regularized Mixture of Linear Experts for Quality Prediction in Multimode and Multiphase Industrial Processes" Appl. Sci. 11, no. 5: 2040. https://doi.org/10.3390/app11052040
 
 # Description
 The MoLE-EN can be used to derive the MoLE-Lasso and MoLE-RR as well. The usage is descripted below. You can also run the script below from demo_MoLE.m
