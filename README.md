@@ -35,8 +35,8 @@ Y_test  = y(test+1:end,:);
 
 % initialize  model
 mole_en = MoLE(ne,iterations,reg,lambda);
+% fit model
 mole_en = mole_en.fit(X_train,Y_train);
-
 % predict from test data
 Y_est = mole_en.predict(X_test);
 
