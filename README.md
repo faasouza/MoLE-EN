@@ -5,7 +5,7 @@ Paper: A Regularized Mixture of Linear Experts for Quality Prediction in Multimo
        https://doi.org/10.3390/app11052040
 
 # Description
-The MoLE-EN can be used to derive the MoLE-Lasso and MoLE-RR as well. The usage is descripted below.
+The MoLE-EN can be used to derive the MoLE-Lasso and MoLE-RR as well. The usage is descripted below. You can also run the script below from demo_MoLE.m
 
 # Source Code
 The source code presents the main class for MoLE-EN. The source code is provided in Matlab format. The usage is quite simple. Below an example that runs on an artifical dataset with two irrelevant variables.
