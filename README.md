@@ -1,6 +1,8 @@
 # MoLE-EN
 Source code of the Regularized Mixture of Linear Experts;
 
+This source code allows to run the mixture of experts model with lasso, elastic-net and ridge regression penalties. The derivation and description is given in the reference paper.
+
 Reference paper: Souza, Francisco; Mendes, Jérôme; Araújo, Rui. 2021. "A Regularized Mixture of Linear Experts for Quality Prediction in Multimode and Multiphase Industrial Processes" Appl. Sci. 11, no. 5: 2040. https://doi.org/10.3390/app11052040
 
 # Description
