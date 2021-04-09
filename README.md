@@ -1,5 +1,5 @@
 # MoLE-EN
-Source code of the Regularized Mixture of Linear Experts;
+Source code of the Regularized Mixture of Linear Experts for soft sensor application in industrial settings;
 
 This source code allows to run the mixture of experts model with lasso, elastic-net and ridge regression penalties. The derivation and description is given in the reference paper.
 
