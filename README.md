@@ -55,6 +55,8 @@ It should output something like this:
 ![MoLE-EN results](/mole_en_output.png)
 
 # Utilization
+You can also run the script below from demo_MoLE.m
+
 
 # Contact
-f.souza@science.ru.nl
+If you have any question, bug report, please contact me trough the email: f.souza@science.ru.nl
