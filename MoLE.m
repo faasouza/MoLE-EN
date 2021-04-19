@@ -90,14 +90,15 @@ classdef MoLE
                 % M STEP
                 % update parameters
                 % expert function update
+                df_hmole = 0;
                 for j=1:ne_
                     w =  resp(:,j);
-                    theta_(:,j) = obj.fit_expert_model([ones(m,1) x],y,w,theta_(:,j));
+                    [theta_(:,j), df] = obj.fit_expert_model([ones(m,1) x],y,w,theta_(:,j));
+                    df_hmole = df_hmole + df;
                 end
                 
                 % gate function update
-                
-                df_hmole = 0;
+
                 for j=2:ne_
                     
                     for l=1:ne_
